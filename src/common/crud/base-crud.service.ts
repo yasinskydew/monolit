@@ -1,6 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import {
   DeepPartial,
+  FindOptionsOrder,
   FindOptionsRelations,
   FindOptionsWhere,
   ObjectLiteral,
@@ -14,11 +15,18 @@ export abstract class BaseCrudService<T extends ObjectLiteral & { id: number }> 
     skip = 0,
     take = 50,
     relations?: FindOptionsRelations<T>,
+    orderBy = 'id',
+    order: 'ASC' | 'DESC' = 'ASC',
   ): Promise<T[]> {
+    const columns = new Set(
+      this.repository.metadata.columns.map((c) => c.propertyName),
+    );
+    const field = columns.has(orderBy) ? orderBy : 'id';
+
     return this.repository.find({
       skip,
       take,
-      order: { id: 'ASC' } as never,
+      order: { [field]: order } as FindOptionsOrder<T>,
       ...(relations ? { relations } : {}),
     });
   }

@@ -27,6 +27,8 @@ export class NameController {
       query.skip ?? 0,
       query.take ?? 50,
       parseRelations(query.relations),
+      query.orderBy ?? 'id',
+      query.order ?? 'ASC',
     );
   }
 

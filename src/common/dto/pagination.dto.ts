@@ -1,6 +1,6 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import { IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
+import { Transform, Type } from 'class-transformer';
+import { IsIn, IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
 
 export class PaginationDto {
   @ApiPropertyOptional({ default: 0 })
@@ -26,4 +26,21 @@ export class PaginationDto {
   @IsOptional()
   @IsString()
   relations?: string;
+
+  @ApiPropertyOptional({
+    default: 'id',
+    description: 'Entity column to order by',
+    example: 'production_year',
+  })
+  @IsOptional()
+  @IsString()
+  orderBy?: string = 'id';
+
+  @ApiPropertyOptional({ enum: ['ASC', 'DESC'], default: 'ASC' })
+  @IsOptional()
+  @Transform(({ value }) =>
+    typeof value === 'string' ? value.toUpperCase() : value,
+  )
+  @IsIn(['ASC', 'DESC'])
+  order?: 'ASC' | 'DESC' = 'ASC';
 }
