@@ -1,0 +1,6 @@
+workflows:
+  syncSpecToCollection:
+    - spec: ../postman/specs/monolit.openapi.json
+      collection: ../postman/collections/db-nest IMDB API
+      options:
+        folderStrategy: Tags

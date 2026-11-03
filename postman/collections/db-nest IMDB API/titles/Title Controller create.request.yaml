@@ -1,0 +1,27 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/titles"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "string",
+      "kind_id": 7134.457076899707,
+      "id": 1662.6545204780996,
+      "imdb_index": "string",
+      "production_year": 5038.395607843995,
+      "imdb_id": 7804.459834005684,
+      "phonetic_code": "string",
+      "episode_of_id": 4522.272381000221,
+      "season_nr": 2318.9920210279524,
+      "episode_nr": 1811.830517835915,
+      "series_years": "string",
+      "md5sum": "string"
+    }
+settings: {}
+examples: ./.resources/Title Controller create.resources/examples
+order: 2000

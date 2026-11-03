@@ -1,0 +1,31 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/titles/:id"
+method: PATCH
+headers:
+  Content-Type: application/json
+  Accept: application/json
+pathVariables:
+  - key: id
+    value: "1564.1878265887499"
+    disabled: false
+    description: "(Required) "
+body:
+  type: json
+  content: |-
+    {
+      "title": "string",
+      "imdb_index": "string",
+      "kind_id": 2590.1783211156726,
+      "production_year": 512.4396248720586,
+      "imdb_id": 3139.41108295694,
+      "phonetic_code": "string",
+      "episode_of_id": 8173.536737449467,
+      "season_nr": 2095.5295488238335,
+      "episode_nr": 5937.934347894043,
+      "series_years": "string",
+      "md5sum": "string"
+    }
+settings: {}
+examples: ./.resources/Title Controller update.resources/examples
+order: 4000

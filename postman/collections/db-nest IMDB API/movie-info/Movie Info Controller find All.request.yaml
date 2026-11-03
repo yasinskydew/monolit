@@ -1,0 +1,20 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/movie-info?skip=0&take=50&relations=kindType,castInfos.person"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  - key: skip
+    value: "0"
+    disabled: false
+  - key: take
+    value: "50"
+    disabled: false
+  - key: relations
+    value: kindType,castInfos.person
+    disabled: false
+    description: Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos
+settings: {}
+examples: ./.resources/Movie Info Controller find All.resources/examples
+order: 1000

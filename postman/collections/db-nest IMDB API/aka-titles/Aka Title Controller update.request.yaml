@@ -1,0 +1,31 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/aka-titles/:id"
+method: PATCH
+headers:
+  Content-Type: application/json
+  Accept: application/json
+pathVariables:
+  - key: id
+    value: "1564.1878265887499"
+    disabled: false
+    description: "(Required) "
+body:
+  type: json
+  content: |-
+    {
+      "movie_id": 972.6147539913654,
+      "title": "string",
+      "imdb_index": "string",
+      "kind_id": 8552.593311760575,
+      "production_year": 2642.578291706741,
+      "phonetic_code": "string",
+      "episode_of_id": 1261.940838303417,
+      "season_nr": 5280.288970097899,
+      "episode_nr": 7353.875278495252,
+      "note": "string",
+      "md5sum": "string"
+    }
+settings: {}
+examples: ./.resources/Aka Title Controller update.resources/examples
+order: 4000

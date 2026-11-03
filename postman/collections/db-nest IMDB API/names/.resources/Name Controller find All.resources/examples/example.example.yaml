@@ -1,0 +1,863 @@
+$kind: http-example
+name: ""
+request:
+  url: "{{baseUrl}}/names?skip=0&take=50&relations=kindType,castInfos.person"
+  method: GET
+  headers:
+    Accept: application/json
+  queryParams:
+    skip: "0"
+    take: "50"
+    relations: kindType,castInfos.person
+  body:
+    type: text
+    content: ""
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "id": 4142.302710097283,
+          "name": "string",
+          "imdb_index": "string",
+          "imdb_id": 7509.911116212606,
+          "gender": "string",
+          "name_pcode_cf": "string",
+          "name_pcode_nf": "string",
+          "surname_pcode": "string",
+          "md5sum": "string",
+          "akaNames": [
+            {
+              "id": 113.57117211446166,
+              "person_id": 8070.1854708604515,
+              "name": "string",
+              "imdb_index": "string",
+              "name_pcode_cf": "string",
+              "name_pcode_nf": "string",
+              "surname_pcode": "string",
+              "md5sum": "string",
+              "person": {
+                "value": "<Circular reference to #/components/schemas/Name detected>"
+              }
+            },
+            {
+              "id": 1887.9999592900276,
+              "person_id": 9676.14182503894,
+              "name": "string",
+              "imdb_index": "string",
+              "name_pcode_cf": "string",
+              "name_pcode_nf": "string",
+              "surname_pcode": "string",
+              "md5sum": "string",
+              "person": {
+                "value": "<Circular reference to #/components/schemas/Name detected>"
+              }
+            }
+          ],
+          "castInfos": [
+            {
+              "id": 4042.899846099317,
+              "person_id": 7294.060350395739,
+              "movie_id": 6964.075791183859,
+              "person_role_id": 74.5187234133482,
+              "note": "string",
+              "nr_order": 3430.873698089272,
+              "role_id": 4208.5050931200385,
+              "person": {
+                "value": "<Circular reference to #/components/schemas/Name detected>"
+              },
+              "movie": {
+                "id": 3799.0295607596636,
+                "title": "string",
+                "imdb_index": "string",
+                "kind_id": 2462.1270084753633,
+                "production_year": 4735.213713720441,
+                "imdb_id": 7477.474673651159,
+                "phonetic_code": "string",
+                "episode_of_id": 6264.775556046516,
+                "season_nr": 6637.035582680255,
+                "episode_nr": 2013.3197563700378,
+                "series_years": "string",
+                "md5sum": "string",
+                "kindType": {
+                  "id": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  "kind": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  "titles": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  "akaTitles": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                },
+                "episodeOf": {},
+                "episodes": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/Title detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/Title detected>"
+                  }
+                ],
+                "akaTitles": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "castInfos": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  }
+                ],
+                "movieCompanies": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieInfos": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieInfoIdxs": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieKeywords": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieLinks": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "linkedFrom": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "completeCasts": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ]
+              },
+              "character": {
+                "id": 8702.129130251706,
+                "name": "string",
+                "imdb_index": "string",
+                "imdb_id": 6709.375276695937,
+                "name_pcode_nf": "string",
+                "surname_pcode": "string",
+                "md5sum": "string",
+                "castInfos": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ]
+              },
+              "roleType": {
+                "id": 1546.7174397781491,
+                "role": "string",
+                "castInfos": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  }
+                ]
+              }
+            },
+            {
+              "id": 7483.456458430737,
+              "person_id": 4351.878217421472,
+              "movie_id": 1882.1733281947672,
+              "person_role_id": 2684.8773448728025,
+              "note": "string",
+              "nr_order": 7303.170156665146,
+              "role_id": 9277.827844489366,
+              "person": {
+                "value": "<Circular reference to #/components/schemas/Name detected>"
+              },
+              "movie": {
+                "id": 5110.5957315303385,
+                "title": "string",
+                "imdb_index": "string",
+                "kind_id": 9726.028107106686,
+                "production_year": 6105.797232594341,
+                "imdb_id": 739.3355341628194,
+                "phonetic_code": "string",
+                "episode_of_id": 5898.690954782069,
+                "season_nr": 3231.108624022454,
+                "episode_nr": 2108.191610313952,
+                "series_years": "string",
+                "md5sum": "string",
+                "kindType": {
+                  "id": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  "kind": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  "titles": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  "akaTitles": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                },
+                "episodeOf": {},
+                "episodes": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/Title detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/Title detected>"
+                  }
+                ],
+                "akaTitles": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "castInfos": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  }
+                ],
+                "movieCompanies": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieInfos": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieInfoIdxs": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieKeywords": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieLinks": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "linkedFrom": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "completeCasts": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ]
+              },
+              "character": {
+                "id": 1648.1530130840838,
+                "name": "string",
+                "imdb_index": "string",
+                "imdb_id": 9627.517608460039,
+                "name_pcode_nf": "string",
+                "surname_pcode": "string",
+                "md5sum": "string",
+                "castInfos": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ]
+              },
+              "roleType": {
+                "id": 4205.357132013887,
+                "role": "string",
+                "castInfos": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  }
+                ]
+              }
+            }
+          ],
+          "personInfos": [
+            {
+              "id": 940.1190234348178,
+              "person_id": 5974.910543300211,
+              "info_type_id": 8515.667328611016,
+              "info": "string",
+              "note": "string",
+              "person": {
+                "value": "<Circular reference to #/components/schemas/Name detected>"
+              },
+              "infoType": {
+                "id": 7943.771197460592,
+                "info": "string",
+                "movieInfos": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieInfoIdxs": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "personInfos": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/PersonInfo detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/PersonInfo detected>"
+                  }
+                ]
+              }
+            },
+            {
+              "id": 7420.437538530678,
+              "person_id": 1283.0401863902807,
+              "info_type_id": 5358.533917460591,
+              "info": "string",
+              "note": "string",
+              "person": {
+                "value": "<Circular reference to #/components/schemas/Name detected>"
+              },
+              "infoType": {
+                "id": 8591.65009809658,
+                "info": "string",
+                "movieInfos": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieInfoIdxs": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "personInfos": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/PersonInfo detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/PersonInfo detected>"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": 6695.1154614798725,
+          "name": "string",
+          "imdb_index": "string",
+          "imdb_id": 6741.559796500951,
+          "gender": "string",
+          "name_pcode_cf": "string",
+          "name_pcode_nf": "string",
+          "surname_pcode": "string",
+          "md5sum": "string",
+          "akaNames": [
+            {
+              "id": 660.004757810384,
+              "person_id": 3795.3483825549483,
+              "name": "string",
+              "imdb_index": "string",
+              "name_pcode_cf": "string",
+              "name_pcode_nf": "string",
+              "surname_pcode": "string",
+              "md5sum": "string",
+              "person": {
+                "value": "<Circular reference to #/components/schemas/Name detected>"
+              }
+            },
+            {
+              "id": 2440.639273263514,
+              "person_id": 7043.819471728057,
+              "name": "string",
+              "imdb_index": "string",
+              "name_pcode_cf": "string",
+              "name_pcode_nf": "string",
+              "surname_pcode": "string",
+              "md5sum": "string",
+              "person": {
+                "value": "<Circular reference to #/components/schemas/Name detected>"
+              }
+            }
+          ],
+          "castInfos": [
+            {
+              "id": 5670.052105560899,
+              "person_id": 8938.239349517971,
+              "movie_id": 9192.791895475239,
+              "person_role_id": 2626.0373974218965,
+              "note": "string",
+              "nr_order": 1405.4560428485274,
+              "role_id": 1777.4188867770135,
+              "person": {
+                "value": "<Circular reference to #/components/schemas/Name detected>"
+              },
+              "movie": {
+                "id": 1413.8314267620444,
+                "title": "string",
+                "imdb_index": "string",
+                "kind_id": 2221.3296266272664,
+                "production_year": 5022.4223476834595,
+                "imdb_id": 8149.9410956166685,
+                "phonetic_code": "string",
+                "episode_of_id": 3452.1993063390255,
+                "season_nr": 516.7002184316516,
+                "episode_nr": 1236.4452634938061,
+                "series_years": "string",
+                "md5sum": "string",
+                "kindType": {
+                  "id": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  "kind": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  "titles": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  "akaTitles": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                },
+                "episodeOf": {},
+                "episodes": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/Title detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/Title detected>"
+                  }
+                ],
+                "akaTitles": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "castInfos": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  }
+                ],
+                "movieCompanies": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieInfos": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieInfoIdxs": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieKeywords": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieLinks": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "linkedFrom": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "completeCasts": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ]
+              },
+              "character": {
+                "id": 9002.013504505157,
+                "name": "string",
+                "imdb_index": "string",
+                "imdb_id": 9221.580747980624,
+                "name_pcode_nf": "string",
+                "surname_pcode": "string",
+                "md5sum": "string",
+                "castInfos": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ]
+              },
+              "roleType": {
+                "id": 629.8353266902268,
+                "role": "string",
+                "castInfos": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  }
+                ]
+              }
+            },
+            {
+              "id": 2142.865292262286,
+              "person_id": 8258.595503866673,
+              "movie_id": 334.6839686855674,
+              "person_role_id": 2759.205752518028,
+              "note": "string",
+              "nr_order": 3465.6204213388264,
+              "role_id": 4048.0598295107484,
+              "person": {
+                "value": "<Circular reference to #/components/schemas/Name detected>"
+              },
+              "movie": {
+                "id": 9728.37454173714,
+                "title": "string",
+                "imdb_index": "string",
+                "kind_id": 3051.6358301974833,
+                "production_year": 150.30601993203163,
+                "imdb_id": 6159.658404067159,
+                "phonetic_code": "string",
+                "episode_of_id": 3466.545855626464,
+                "season_nr": 3305.652504786849,
+                "episode_nr": 5554.109925869852,
+                "series_years": "string",
+                "md5sum": "string",
+                "kindType": {
+                  "id": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  "kind": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  "titles": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  "akaTitles": {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                },
+                "episodeOf": {},
+                "episodes": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/Title detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/Title detected>"
+                  }
+                ],
+                "akaTitles": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "castInfos": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  }
+                ],
+                "movieCompanies": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieInfos": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieInfoIdxs": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieKeywords": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieLinks": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "linkedFrom": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "completeCasts": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ]
+              },
+              "character": {
+                "id": 3888.6217051185668,
+                "name": "string",
+                "imdb_index": "string",
+                "imdb_id": 2832.2447394020855,
+                "name_pcode_nf": "string",
+                "surname_pcode": "string",
+                "md5sum": "string",
+                "castInfos": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ]
+              },
+              "roleType": {
+                "id": 8675.707031507045,
+                "role": "string",
+                "castInfos": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/CastInfo detected>"
+                  }
+                ]
+              }
+            }
+          ],
+          "personInfos": [
+            {
+              "id": 8838.994193356484,
+              "person_id": 8615.158654283732,
+              "info_type_id": 3320.516108069569,
+              "info": "string",
+              "note": "string",
+              "person": {
+                "value": "<Circular reference to #/components/schemas/Name detected>"
+              },
+              "infoType": {
+                "id": 1816.8877041898668,
+                "info": "string",
+                "movieInfos": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieInfoIdxs": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "personInfos": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/PersonInfo detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/PersonInfo detected>"
+                  }
+                ]
+              }
+            },
+            {
+              "id": 3677.539255004376,
+              "person_id": 4311.462405603379,
+              "info_type_id": 5523.834174964577,
+              "info": "string",
+              "note": "string",
+              "person": {
+                "value": "<Circular reference to #/components/schemas/Name detected>"
+              },
+              "infoType": {
+                "id": 8927.031548228115,
+                "info": "string",
+                "movieInfos": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "movieInfoIdxs": [
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  },
+                  {
+                    "value": "<Error: Too many levels of nesting to fake this schema>"
+                  }
+                ],
+                "personInfos": [
+                  {
+                    "value": "<Circular reference to #/components/schemas/PersonInfo detected>"
+                  },
+                  {
+                    "value": "<Circular reference to #/components/schemas/PersonInfo detected>"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+order: 1000

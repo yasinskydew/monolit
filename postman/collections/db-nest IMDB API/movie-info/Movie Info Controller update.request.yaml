@@ -1,0 +1,24 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/movie-info/:id"
+method: PATCH
+headers:
+  Content-Type: application/json
+  Accept: application/json
+pathVariables:
+  - key: id
+    value: "1564.1878265887499"
+    disabled: false
+    description: "(Required) "
+body:
+  type: json
+  content: |-
+    {
+      "movie_id": 3537.273872643709,
+      "info_type_id": 4049.798590131104,
+      "info": "string",
+      "note": "string"
+    }
+settings: {}
+examples: ./.resources/Movie Info Controller update.resources/examples
+order: 4000

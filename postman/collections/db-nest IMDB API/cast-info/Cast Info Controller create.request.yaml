@@ -1,0 +1,22 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/cast-info"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "person_id": 253.08675365522504,
+      "movie_id": 6715.511551592499,
+      "role_id": 830.9621247462928,
+      "id": 2379.6211322769523,
+      "person_role_id": 7633.082193788141,
+      "note": "string",
+      "nr_order": 6195.614410098642
+    }
+settings: {}
+examples: ./.resources/Cast Info Controller create.resources/examples
+order: 2000

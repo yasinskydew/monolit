@@ -1,0 +1,3921 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "health"
+        ]
+      }
+    },
+    "/titles": {
+      "get": {
+        "operationId": "TitleController_findAll",
+        "parameters": [
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos",
+            "schema": {
+              "example": "kindType,castInfos.person",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Title"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "titles"
+        ]
+      },
+      "post": {
+        "operationId": "TitleController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTitleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Title"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "titles"
+        ]
+      }
+    },
+    "/titles/{id}": {
+      "get": {
+        "operationId": "TitleController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Title"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "titles"
+        ]
+      },
+      "patch": {
+        "operationId": "TitleController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTitleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Title"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "titles"
+        ]
+      },
+      "delete": {
+        "operationId": "TitleController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "titles"
+        ]
+      }
+    },
+    "/names": {
+      "get": {
+        "operationId": "NameController_findAll",
+        "parameters": [
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos",
+            "schema": {
+              "example": "kindType,castInfos.person",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "names"
+        ]
+      },
+      "post": {
+        "operationId": "NameController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateNameDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Name"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "names"
+        ]
+      }
+    },
+    "/names/{id}": {
+      "get": {
+        "operationId": "NameController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Name"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "names"
+        ]
+      },
+      "patch": {
+        "operationId": "NameController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateNameDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Name"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "names"
+        ]
+      },
+      "delete": {
+        "operationId": "NameController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "names"
+        ]
+      }
+    },
+    "/cast-info": {
+      "get": {
+        "operationId": "CastInfoController_findAll",
+        "parameters": [
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos",
+            "schema": {
+              "example": "kindType,castInfos.person",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CastInfo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cast-info"
+        ]
+      },
+      "post": {
+        "operationId": "CastInfoController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCastInfoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CastInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cast-info"
+        ]
+      }
+    },
+    "/cast-info/{id}": {
+      "get": {
+        "operationId": "CastInfoController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CastInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cast-info"
+        ]
+      },
+      "patch": {
+        "operationId": "CastInfoController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCastInfoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CastInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cast-info"
+        ]
+      },
+      "delete": {
+        "operationId": "CastInfoController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "cast-info"
+        ]
+      }
+    },
+    "/movie-info": {
+      "get": {
+        "operationId": "MovieInfoController_findAll",
+        "parameters": [
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos",
+            "schema": {
+              "example": "kindType,castInfos.person",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MovieInfo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "movie-info"
+        ]
+      },
+      "post": {
+        "operationId": "MovieInfoController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMovieInfoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovieInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "movie-info"
+        ]
+      }
+    },
+    "/movie-info/{id}": {
+      "get": {
+        "operationId": "MovieInfoController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovieInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "movie-info"
+        ]
+      },
+      "patch": {
+        "operationId": "MovieInfoController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMovieInfoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovieInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "movie-info"
+        ]
+      },
+      "delete": {
+        "operationId": "MovieInfoController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "movie-info"
+        ]
+      }
+    },
+    "/movie-companies": {
+      "get": {
+        "operationId": "MovieCompaniesController_findAll",
+        "parameters": [
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos",
+            "schema": {
+              "example": "kindType,castInfos.person",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MovieCompanies"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "movie-companies"
+        ]
+      },
+      "post": {
+        "operationId": "MovieCompaniesController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMovieCompaniesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovieCompanies"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "movie-companies"
+        ]
+      }
+    },
+    "/movie-companies/{id}": {
+      "get": {
+        "operationId": "MovieCompaniesController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovieCompanies"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "movie-companies"
+        ]
+      },
+      "patch": {
+        "operationId": "MovieCompaniesController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMovieCompaniesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovieCompanies"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "movie-companies"
+        ]
+      },
+      "delete": {
+        "operationId": "MovieCompaniesController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "movie-companies"
+        ]
+      }
+    },
+    "/movie-keywords": {
+      "get": {
+        "operationId": "MovieKeywordController_findAll",
+        "parameters": [
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos",
+            "schema": {
+              "example": "kindType,castInfos.person",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MovieKeyword"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "movie-keywords"
+        ]
+      },
+      "post": {
+        "operationId": "MovieKeywordController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMovieKeywordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovieKeyword"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "movie-keywords"
+        ]
+      }
+    },
+    "/movie-keywords/{id}": {
+      "get": {
+        "operationId": "MovieKeywordController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovieKeyword"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "movie-keywords"
+        ]
+      },
+      "patch": {
+        "operationId": "MovieKeywordController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMovieKeywordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovieKeyword"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "movie-keywords"
+        ]
+      },
+      "delete": {
+        "operationId": "MovieKeywordController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "movie-keywords"
+        ]
+      }
+    },
+    "/company-names": {
+      "get": {
+        "operationId": "CompanyNameController_findAll",
+        "parameters": [
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos",
+            "schema": {
+              "example": "kindType,castInfos.person",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyName"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "company-names"
+        ]
+      },
+      "post": {
+        "operationId": "CompanyNameController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCompanyNameDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyName"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "company-names"
+        ]
+      }
+    },
+    "/company-names/{id}": {
+      "get": {
+        "operationId": "CompanyNameController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyName"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "company-names"
+        ]
+      },
+      "patch": {
+        "operationId": "CompanyNameController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCompanyNameDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyName"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "company-names"
+        ]
+      },
+      "delete": {
+        "operationId": "CompanyNameController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "company-names"
+        ]
+      }
+    },
+    "/keywords": {
+      "get": {
+        "operationId": "KeywordController_findAll",
+        "parameters": [
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos",
+            "schema": {
+              "example": "kindType,castInfos.person",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Keyword"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "keywords"
+        ]
+      },
+      "post": {
+        "operationId": "KeywordController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateKeywordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Keyword"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "keywords"
+        ]
+      }
+    },
+    "/keywords/{id}": {
+      "get": {
+        "operationId": "KeywordController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Keyword"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "keywords"
+        ]
+      },
+      "patch": {
+        "operationId": "KeywordController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateKeywordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Keyword"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "keywords"
+        ]
+      },
+      "delete": {
+        "operationId": "KeywordController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "keywords"
+        ]
+      }
+    },
+    "/char-names": {
+      "get": {
+        "operationId": "CharNameController_findAll",
+        "parameters": [
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos",
+            "schema": {
+              "example": "kindType,castInfos.person",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CharName"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "char-names"
+        ]
+      },
+      "post": {
+        "operationId": "CharNameController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCharNameDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CharName"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "char-names"
+        ]
+      }
+    },
+    "/char-names/{id}": {
+      "get": {
+        "operationId": "CharNameController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CharName"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "char-names"
+        ]
+      },
+      "patch": {
+        "operationId": "CharNameController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCharNameDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CharName"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "char-names"
+        ]
+      },
+      "delete": {
+        "operationId": "CharNameController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "char-names"
+        ]
+      }
+    },
+    "/person-info": {
+      "get": {
+        "operationId": "PersonInfoController_findAll",
+        "parameters": [
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos",
+            "schema": {
+              "example": "kindType,castInfos.person",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PersonInfo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "person-info"
+        ]
+      },
+      "post": {
+        "operationId": "PersonInfoController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePersonInfoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "person-info"
+        ]
+      }
+    },
+    "/person-info/{id}": {
+      "get": {
+        "operationId": "PersonInfoController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "person-info"
+        ]
+      },
+      "patch": {
+        "operationId": "PersonInfoController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePersonInfoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "person-info"
+        ]
+      },
+      "delete": {
+        "operationId": "PersonInfoController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "person-info"
+        ]
+      }
+    },
+    "/aka-names": {
+      "get": {
+        "operationId": "AkaNameController_findAll",
+        "parameters": [
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos",
+            "schema": {
+              "example": "kindType,castInfos.person",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AkaName"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "aka-names"
+        ]
+      },
+      "post": {
+        "operationId": "AkaNameController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAkaNameDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AkaName"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "aka-names"
+        ]
+      }
+    },
+    "/aka-names/{id}": {
+      "get": {
+        "operationId": "AkaNameController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AkaName"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "aka-names"
+        ]
+      },
+      "patch": {
+        "operationId": "AkaNameController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAkaNameDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AkaName"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "aka-names"
+        ]
+      },
+      "delete": {
+        "operationId": "AkaNameController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "aka-names"
+        ]
+      }
+    },
+    "/aka-titles": {
+      "get": {
+        "operationId": "AkaTitleController_findAll",
+        "parameters": [
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated relation paths, e.g. kindType,castInfos.person.personInfos",
+            "schema": {
+              "example": "kindType,castInfos.person",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AkaTitle"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "aka-titles"
+        ]
+      },
+      "post": {
+        "operationId": "AkaTitleController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAkaTitleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AkaTitle"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "aka-titles"
+        ]
+      }
+    },
+    "/aka-titles/{id}": {
+      "get": {
+        "operationId": "AkaTitleController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AkaTitle"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "aka-titles"
+        ]
+      },
+      "patch": {
+        "operationId": "AkaTitleController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAkaTitleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AkaTitle"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "aka-titles"
+        ]
+      },
+      "delete": {
+        "operationId": "AkaTitleController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "aka-titles"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "db-nest IMDB API",
+    "description": "CRUD API for IMDB / JOB Postgres schema",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "AkaTitle": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "movie_id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "kind_id": {
+            "type": "number"
+          },
+          "production_year": {
+            "type": "number",
+            "nullable": true
+          },
+          "phonetic_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "episode_of_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "season_nr": {
+            "type": "number",
+            "nullable": true
+          },
+          "episode_nr": {
+            "type": "number",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          },
+          "movie": {
+            "$ref": "#/components/schemas/Title"
+          },
+          "kindType": {
+            "$ref": "#/components/schemas/KindType"
+          }
+        },
+        "required": [
+          "id",
+          "movie_id",
+          "title",
+          "imdb_index",
+          "kind_id",
+          "production_year",
+          "phonetic_code",
+          "episode_of_id",
+          "season_nr",
+          "episode_nr",
+          "note",
+          "md5sum",
+          "movie",
+          "kindType"
+        ]
+      },
+      "AkaName": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "person_id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_cf": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_nf": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname_pcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          },
+          "person": {
+            "$ref": "#/components/schemas/Name"
+          }
+        },
+        "required": [
+          "id",
+          "person_id",
+          "name",
+          "imdb_index",
+          "name_pcode_cf",
+          "name_pcode_nf",
+          "surname_pcode",
+          "md5sum",
+          "person"
+        ]
+      },
+      "MovieInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "movie_id": {
+            "type": "number"
+          },
+          "info_type_id": {
+            "type": "number"
+          },
+          "info": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "movie": {
+            "$ref": "#/components/schemas/Title"
+          },
+          "infoType": {
+            "$ref": "#/components/schemas/InfoType"
+          }
+        },
+        "required": [
+          "id",
+          "movie_id",
+          "info_type_id",
+          "info",
+          "note",
+          "movie",
+          "infoType"
+        ]
+      },
+      "MovieInfoIdx": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "movie_id": {
+            "type": "number"
+          },
+          "info_type_id": {
+            "type": "number"
+          },
+          "info": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "movie": {
+            "$ref": "#/components/schemas/Title"
+          },
+          "infoType": {
+            "$ref": "#/components/schemas/InfoType"
+          }
+        },
+        "required": [
+          "id",
+          "movie_id",
+          "info_type_id",
+          "info",
+          "note",
+          "movie",
+          "infoType"
+        ]
+      },
+      "InfoType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "info": {
+            "type": "string"
+          },
+          "movieInfos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieInfo"
+            }
+          },
+          "movieInfoIdxs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieInfoIdx"
+            }
+          },
+          "personInfos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PersonInfo"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "info",
+          "movieInfos",
+          "movieInfoIdxs",
+          "personInfos"
+        ]
+      },
+      "PersonInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "person_id": {
+            "type": "number"
+          },
+          "info_type_id": {
+            "type": "number"
+          },
+          "info": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "person": {
+            "$ref": "#/components/schemas/Name"
+          },
+          "infoType": {
+            "$ref": "#/components/schemas/InfoType"
+          }
+        },
+        "required": [
+          "id",
+          "person_id",
+          "info_type_id",
+          "info",
+          "note",
+          "person",
+          "infoType"
+        ]
+      },
+      "Name": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_cf": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_nf": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname_pcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          },
+          "akaNames": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AkaName"
+            }
+          },
+          "castInfos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CastInfo"
+            }
+          },
+          "personInfos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PersonInfo"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "imdb_index",
+          "imdb_id",
+          "gender",
+          "name_pcode_cf",
+          "name_pcode_nf",
+          "surname_pcode",
+          "md5sum",
+          "akaNames",
+          "castInfos",
+          "personInfos"
+        ]
+      },
+      "CharName": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "name_pcode_nf": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname_pcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          },
+          "castInfos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CastInfo"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "imdb_index",
+          "imdb_id",
+          "name_pcode_nf",
+          "surname_pcode",
+          "md5sum",
+          "castInfos"
+        ]
+      },
+      "RoleType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "role": {
+            "type": "string"
+          },
+          "castInfos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CastInfo"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "role",
+          "castInfos"
+        ]
+      },
+      "CastInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "person_id": {
+            "type": "number"
+          },
+          "movie_id": {
+            "type": "number"
+          },
+          "person_role_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "nr_order": {
+            "type": "number",
+            "nullable": true
+          },
+          "role_id": {
+            "type": "number"
+          },
+          "person": {
+            "$ref": "#/components/schemas/Name"
+          },
+          "movie": {
+            "$ref": "#/components/schemas/Title"
+          },
+          "character": {
+            "nullable": true,
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CharName"
+              }
+            ]
+          },
+          "roleType": {
+            "$ref": "#/components/schemas/RoleType"
+          }
+        },
+        "required": [
+          "id",
+          "person_id",
+          "movie_id",
+          "person_role_id",
+          "note",
+          "nr_order",
+          "role_id",
+          "person",
+          "movie",
+          "character",
+          "roleType"
+        ]
+      },
+      "CompanyName": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "country_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "name_pcode_nf": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_sf": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          },
+          "movieCompanies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieCompanies"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "country_code",
+          "imdb_id",
+          "name_pcode_nf",
+          "name_pcode_sf",
+          "md5sum",
+          "movieCompanies"
+        ]
+      },
+      "CompanyType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "kind": {
+            "type": "string",
+            "nullable": true
+          },
+          "movieCompanies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieCompanies"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "movieCompanies"
+        ]
+      },
+      "MovieCompanies": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "movie_id": {
+            "type": "number"
+          },
+          "company_id": {
+            "type": "number"
+          },
+          "company_type_id": {
+            "type": "number"
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "movie": {
+            "$ref": "#/components/schemas/Title"
+          },
+          "company": {
+            "$ref": "#/components/schemas/CompanyName"
+          },
+          "companyType": {
+            "$ref": "#/components/schemas/CompanyType"
+          }
+        },
+        "required": [
+          "id",
+          "movie_id",
+          "company_id",
+          "company_type_id",
+          "note",
+          "movie",
+          "company",
+          "companyType"
+        ]
+      },
+      "Keyword": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "keyword": {
+            "type": "string"
+          },
+          "phonetic_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "movieKeywords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieKeyword"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "keyword",
+          "phonetic_code",
+          "movieKeywords"
+        ]
+      },
+      "MovieKeyword": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "movie_id": {
+            "type": "number"
+          },
+          "keyword_id": {
+            "type": "number"
+          },
+          "movie": {
+            "$ref": "#/components/schemas/Title"
+          },
+          "keywordRef": {
+            "$ref": "#/components/schemas/Keyword"
+          }
+        },
+        "required": [
+          "id",
+          "movie_id",
+          "keyword_id",
+          "movie",
+          "keywordRef"
+        ]
+      },
+      "LinkType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "link": {
+            "type": "string"
+          },
+          "movieLinks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieLink"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "link",
+          "movieLinks"
+        ]
+      },
+      "MovieLink": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "movie_id": {
+            "type": "number"
+          },
+          "linked_movie_id": {
+            "type": "number"
+          },
+          "link_type_id": {
+            "type": "number"
+          },
+          "movie": {
+            "$ref": "#/components/schemas/Title"
+          },
+          "linkedMovie": {
+            "$ref": "#/components/schemas/Title"
+          },
+          "linkType": {
+            "$ref": "#/components/schemas/LinkType"
+          }
+        },
+        "required": [
+          "id",
+          "movie_id",
+          "linked_movie_id",
+          "link_type_id",
+          "movie",
+          "linkedMovie",
+          "linkType"
+        ]
+      },
+      "CompCastType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "subjectCasts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompleteCast"
+            }
+          },
+          "statusCasts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompleteCast"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "subjectCasts",
+          "statusCasts"
+        ]
+      },
+      "CompleteCast": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "movie_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "subject_id": {
+            "type": "number"
+          },
+          "status_id": {
+            "type": "number"
+          },
+          "movie": {
+            "nullable": true,
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Title"
+              }
+            ]
+          },
+          "subjectType": {
+            "$ref": "#/components/schemas/CompCastType"
+          },
+          "statusType": {
+            "$ref": "#/components/schemas/CompCastType"
+          }
+        },
+        "required": [
+          "id",
+          "movie_id",
+          "subject_id",
+          "status_id",
+          "movie",
+          "subjectType",
+          "statusType"
+        ]
+      },
+      "Title": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "kind_id": {
+            "type": "number"
+          },
+          "production_year": {
+            "type": "number",
+            "nullable": true
+          },
+          "imdb_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "phonetic_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "episode_of_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "season_nr": {
+            "type": "number",
+            "nullable": true
+          },
+          "episode_nr": {
+            "type": "number",
+            "nullable": true
+          },
+          "series_years": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          },
+          "kindType": {
+            "$ref": "#/components/schemas/KindType"
+          },
+          "episodeOf": {
+            "nullable": true,
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Title"
+              }
+            ]
+          },
+          "episodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Title"
+            }
+          },
+          "akaTitles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AkaTitle"
+            }
+          },
+          "castInfos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CastInfo"
+            }
+          },
+          "movieCompanies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieCompanies"
+            }
+          },
+          "movieInfos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieInfo"
+            }
+          },
+          "movieInfoIdxs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieInfoIdx"
+            }
+          },
+          "movieKeywords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieKeyword"
+            }
+          },
+          "movieLinks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieLink"
+            }
+          },
+          "linkedFrom": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieLink"
+            }
+          },
+          "completeCasts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompleteCast"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "imdb_index",
+          "kind_id",
+          "production_year",
+          "imdb_id",
+          "phonetic_code",
+          "episode_of_id",
+          "season_nr",
+          "episode_nr",
+          "series_years",
+          "md5sum",
+          "kindType",
+          "episodeOf",
+          "episodes",
+          "akaTitles",
+          "castInfos",
+          "movieCompanies",
+          "movieInfos",
+          "movieInfoIdxs",
+          "movieKeywords",
+          "movieLinks",
+          "linkedFrom",
+          "completeCasts"
+        ]
+      },
+      "KindType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "kind": {
+            "type": "string",
+            "nullable": true
+          },
+          "titles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Title"
+            }
+          },
+          "akaTitles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AkaTitle"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "titles",
+          "akaTitles"
+        ]
+      },
+      "CreateTitleDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true
+          },
+          "title": {
+            "type": "string"
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "kind_id": {
+            "type": "number"
+          },
+          "production_year": {
+            "type": "number",
+            "nullable": true
+          },
+          "imdb_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "phonetic_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "episode_of_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "season_nr": {
+            "type": "number",
+            "nullable": true
+          },
+          "episode_nr": {
+            "type": "number",
+            "nullable": true
+          },
+          "series_years": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "title",
+          "kind_id"
+        ]
+      },
+      "UpdateTitleDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "kind_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "production_year": {
+            "type": "number",
+            "nullable": true
+          },
+          "imdb_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "phonetic_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "episode_of_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "season_nr": {
+            "type": "number",
+            "nullable": true
+          },
+          "episode_nr": {
+            "type": "number",
+            "nullable": true
+          },
+          "series_years": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateNameDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_cf": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_nf": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname_pcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "UpdateNameDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_cf": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_nf": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname_pcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateCastInfoDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true
+          },
+          "person_id": {
+            "type": "number"
+          },
+          "movie_id": {
+            "type": "number"
+          },
+          "person_role_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "nr_order": {
+            "type": "number",
+            "nullable": true
+          },
+          "role_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "person_id",
+          "movie_id",
+          "role_id"
+        ]
+      },
+      "UpdateCastInfoDto": {
+        "type": "object",
+        "properties": {
+          "person_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "movie_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "person_role_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "nr_order": {
+            "type": "number",
+            "nullable": true
+          },
+          "role_id": {
+            "type": "number",
+            "nullable": true
+          }
+        }
+      },
+      "CreateMovieInfoDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true
+          },
+          "movie_id": {
+            "type": "number"
+          },
+          "info_type_id": {
+            "type": "number"
+          },
+          "info": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "movie_id",
+          "info_type_id",
+          "info"
+        ]
+      },
+      "UpdateMovieInfoDto": {
+        "type": "object",
+        "properties": {
+          "movie_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "info_type_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateMovieCompaniesDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true
+          },
+          "movie_id": {
+            "type": "number"
+          },
+          "company_id": {
+            "type": "number"
+          },
+          "company_type_id": {
+            "type": "number"
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "movie_id",
+          "company_id",
+          "company_type_id"
+        ]
+      },
+      "UpdateMovieCompaniesDto": {
+        "type": "object",
+        "properties": {
+          "movie_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "company_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "company_type_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateMovieKeywordDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true
+          },
+          "movie_id": {
+            "type": "number"
+          },
+          "keyword_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "movie_id",
+          "keyword_id"
+        ]
+      },
+      "UpdateMovieKeywordDto": {
+        "type": "object",
+        "properties": {
+          "movie_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "keyword_id": {
+            "type": "number",
+            "nullable": true
+          }
+        }
+      },
+      "CreateCompanyNameDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "country_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "name_pcode_nf": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_sf": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "UpdateCompanyNameDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "country_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "name_pcode_nf": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_sf": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateKeywordDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true
+          },
+          "keyword": {
+            "type": "string"
+          },
+          "phonetic_code": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "keyword"
+        ]
+      },
+      "UpdateKeywordDto": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "nullable": true
+          },
+          "phonetic_code": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateCharNameDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "name_pcode_nf": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname_pcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "UpdateCharNameDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "name_pcode_nf": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname_pcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreatePersonInfoDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true
+          },
+          "person_id": {
+            "type": "number"
+          },
+          "info_type_id": {
+            "type": "number"
+          },
+          "info": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "person_id",
+          "info_type_id",
+          "info"
+        ]
+      },
+      "UpdatePersonInfoDto": {
+        "type": "object",
+        "properties": {
+          "person_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "info_type_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateAkaNameDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true
+          },
+          "person_id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_cf": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_nf": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname_pcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "person_id"
+        ]
+      },
+      "UpdateAkaNameDto": {
+        "type": "object",
+        "properties": {
+          "person_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_cf": {
+            "type": "string",
+            "nullable": true
+          },
+          "name_pcode_nf": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname_pcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateAkaTitleDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": true
+          },
+          "movie_id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "kind_id": {
+            "type": "number"
+          },
+          "production_year": {
+            "type": "number",
+            "nullable": true
+          },
+          "phonetic_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "episode_of_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "season_nr": {
+            "type": "number",
+            "nullable": true
+          },
+          "episode_nr": {
+            "type": "number",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "movie_id",
+          "kind_id"
+        ]
+      },
+      "UpdateAkaTitleDto": {
+        "type": "object",
+        "properties": {
+          "movie_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdb_index": {
+            "type": "string",
+            "nullable": true
+          },
+          "kind_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "production_year": {
+            "type": "number",
+            "nullable": true
+          },
+          "phonetic_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "episode_of_id": {
+            "type": "number",
+            "nullable": true
+          },
+          "season_nr": {
+            "type": "number",
+            "nullable": true
+          },
+          "episode_nr": {
+            "type": "number",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "md5sum": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      }
+    }
+  }
+}

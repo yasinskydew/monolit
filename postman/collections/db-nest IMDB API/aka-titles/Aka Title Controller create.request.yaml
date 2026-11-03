@@ -1,0 +1,27 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/aka-titles"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "movie_id": 3320.960944984108,
+      "kind_id": 8265.93667268753,
+      "id": 7833.359558135271,
+      "title": "string",
+      "imdb_index": "string",
+      "production_year": 6179.121669847518,
+      "phonetic_code": "string",
+      "episode_of_id": 5089.581334032118,
+      "season_nr": 8225.938910618424,
+      "episode_nr": 5225.014416500926,
+      "note": "string",
+      "md5sum": "string"
+    }
+settings: {}
+examples: ./.resources/Aka Title Controller create.resources/examples
+order: 2000

@@ -1,0 +1,22 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/company-names"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "string",
+      "id": 9683.920054230839,
+      "country_code": "string",
+      "imdb_id": 3094.7803845629096,
+      "name_pcode_nf": "string",
+      "name_pcode_sf": "string",
+      "md5sum": "string"
+    }
+settings: {}
+examples: ./.resources/Company Name Controller create.resources/examples
+order: 2000

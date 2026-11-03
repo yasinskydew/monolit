@@ -1,0 +1,26 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/char-names/:id"
+method: PATCH
+headers:
+  Content-Type: application/json
+  Accept: application/json
+pathVariables:
+  - key: id
+    value: "1564.1878265887499"
+    disabled: false
+    description: "(Required) "
+body:
+  type: json
+  content: |-
+    {
+      "name": "string",
+      "imdb_index": "string",
+      "imdb_id": 3358.1935451366007,
+      "name_pcode_nf": "string",
+      "surname_pcode": "string",
+      "md5sum": "string"
+    }
+settings: {}
+examples: ./.resources/Char Name Controller update.resources/examples
+order: 4000

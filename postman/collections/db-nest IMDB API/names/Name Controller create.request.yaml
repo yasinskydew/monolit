@@ -1,0 +1,24 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/names"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "string",
+      "id": 7899.662398267537,
+      "imdb_index": "string",
+      "imdb_id": 7944.143880158663,
+      "gender": "string",
+      "name_pcode_cf": "string",
+      "name_pcode_nf": "string",
+      "surname_pcode": "string",
+      "md5sum": "string"
+    }
+settings: {}
+examples: ./.resources/Name Controller create.resources/examples
+order: 2000

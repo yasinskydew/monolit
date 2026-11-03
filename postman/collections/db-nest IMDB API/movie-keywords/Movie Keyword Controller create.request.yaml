@@ -1,0 +1,18 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/movie-keywords"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "movie_id": 7155.24046914652,
+      "keyword_id": 9208.04740395397,
+      "id": 402.5357076898217
+    }
+settings: {}
+examples: ./.resources/Movie Keyword Controller create.resources/examples
+order: 2000

@@ -1,0 +1,9 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/"
+method: GET
+headers:
+  Accept: application/json
+settings: {}
+examples: ./.resources/App Controller get Hello.resources/examples
+order: 1000

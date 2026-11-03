@@ -1,0 +1,18 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/keywords"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "keyword": "string",
+      "id": 6768.788853660226,
+      "phonetic_code": "string"
+    }
+settings: {}
+examples: ./.resources/Keyword Controller create.resources/examples
+order: 2000

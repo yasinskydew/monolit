@@ -1,0 +1,20 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/movie-companies"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "movie_id": 2243.1731200776994,
+      "company_id": 2611.40309041366,
+      "company_type_id": 3051.400356926024,
+      "id": 6630.476298741996,
+      "note": "string"
+    }
+settings: {}
+examples: ./.resources/Movie Companies Controller create.resources/examples
+order: 2000

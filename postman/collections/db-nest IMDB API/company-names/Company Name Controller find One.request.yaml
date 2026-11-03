@@ -1,0 +1,16 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/company-names/:id?relations=string"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  relations: string
+pathVariables:
+  - key: id
+    value: "1564.1878265887499"
+    disabled: false
+    description: "(Required) "
+settings: {}
+examples: ./.resources/Company Name Controller find One.resources/examples
+order: 3000

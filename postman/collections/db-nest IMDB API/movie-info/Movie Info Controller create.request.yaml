@@ -1,0 +1,20 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/movie-info"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "movie_id": 8898.438857868314,
+      "info_type_id": 3716.3640093058348,
+      "info": "string",
+      "id": 8869.071963708848,
+      "note": "string"
+    }
+settings: {}
+examples: ./.resources/Movie Info Controller create.resources/examples
+order: 2000
