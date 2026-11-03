@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { AkaTitle } from '../entities/aka-title.entity';
+import { DatabaseModule } from '../database';
+import { AkaTitle } from '../database/entities';
 import { AkaTitleController } from './aka-title.controller';
 import { AkaTitleService } from './aka-title.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AkaTitle])],
+  imports: [DatabaseModule.forFeature([AkaTitle])],
   controllers: [AkaTitleController],
   providers: [AkaTitleService],
   exports: [AkaTitleService],

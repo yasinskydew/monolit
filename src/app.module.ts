@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 import { AkaNameModule } from './aka-name/aka-name.module';
 import { AkaTitleModule } from './aka-title/aka-title.module';
 import { AppController } from './app.controller';
@@ -8,7 +7,7 @@ import { AppService } from './app.service';
 import { CastInfoModule } from './cast-info/cast-info.module';
 import { CharNameModule } from './char-name/char-name.module';
 import { CompanyNameModule } from './company-name/company-name.module';
-import { entities } from './entities';
+import { DatabaseModule } from './database';
 import { KeywordModule } from './keyword/keyword.module';
 import { MovieCompaniesModule } from './movie-companies/movie-companies.module';
 import { MovieInfoModule } from './movie-info/movie-info.module';
@@ -20,20 +19,7 @@ import { TitleModule } from './title/title.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'postgres' as const,
-        host: config.get<string>('DB_HOST', 'localhost'),
-        port: config.get<number>('DB_PORT', 15432),
-        username: config.get<string>('DB_USER', 'db-nest'),
-        password: config.get<string>('DB_PASSWORD', 'db-nest'),
-        database: config.get<string>('DB_NAME', 'db-nest_db'),
-        entities,
-        synchronize: false,
-        logging: config.get<string>('DB_LOGGING') === 'true',
-      }),
-    }),
+    DatabaseModule.forRoot(),
     TitleModule,
     NameModule,
     CastInfoModule,

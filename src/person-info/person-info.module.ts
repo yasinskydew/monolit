@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { PersonInfo } from '../entities/person-info.entity';
+import { DatabaseModule } from '../database';
+import { PersonInfo } from '../database/entities';
 import { PersonInfoController } from './person-info.controller';
 import { PersonInfoService } from './person-info.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PersonInfo])],
+  imports: [DatabaseModule.forFeature([PersonInfo])],
   controllers: [PersonInfoController],
   providers: [PersonInfoService],
   exports: [PersonInfoService],

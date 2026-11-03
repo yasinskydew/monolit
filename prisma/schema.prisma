@@ -1,0 +1,254 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AkaName {
+  id Int @id
+  person_id Int
+  name String?
+  imdb_index String?
+  name_pcode_cf String?
+  name_pcode_nf String?
+  surname_pcode String?
+  md5sum String?
+  person Name @relation("Name_akaNames", fields: [person_id], references: [id])
+  @@map("aka_name")
+}
+
+model AkaTitle {
+  id Int @id
+  movie_id Int
+  title String?
+  imdb_index String?
+  kind_id Int
+  production_year Int?
+  phonetic_code String?
+  episode_of_id Int?
+  season_nr Int?
+  episode_nr Int?
+  note String?
+  md5sum String?
+  movie Title @relation("Title_akaTitles", fields: [movie_id], references: [id])
+  kindType KindType @relation("KindType_akaTitles", fields: [kind_id], references: [id])
+  @@map("aka_title")
+}
+
+model CastInfo {
+  id Int @id
+  person_id Int
+  movie_id Int
+  person_role_id Int?
+  note String?
+  nr_order Int?
+  role_id Int
+  person Name @relation("Name_castInfos", fields: [person_id], references: [id])
+  movie Title @relation("Title_castInfos", fields: [movie_id], references: [id])
+  character CharName? @relation("CharName_castInfos", fields: [person_role_id], references: [id])
+  roleType RoleType @relation("RoleType_castInfos", fields: [role_id], references: [id])
+  @@map("cast_info")
+}
+
+model CharName {
+  id Int @id
+  name String
+  imdb_index String?
+  imdb_id Int?
+  name_pcode_nf String?
+  surname_pcode String?
+  md5sum String?
+  castInfos CastInfo[] @relation("CharName_castInfos")
+  @@map("char_name")
+}
+
+model CompCastType {
+  id Int @id
+  kind String
+  subjectCasts CompleteCast[] @relation("CompCastType_subjectCasts")
+  statusCasts CompleteCast[] @relation("CompCastType_statusCasts")
+  @@map("comp_cast_type")
+}
+
+model CompanyName {
+  id Int @id
+  name String
+  country_code String?
+  imdb_id Int?
+  name_pcode_nf String?
+  name_pcode_sf String?
+  md5sum String?
+  movieCompanies MovieCompanies[] @relation("CompanyName_movieCompanies")
+  @@map("company_name")
+}
+
+model CompanyType {
+  id Int @id
+  kind String?
+  movieCompanies MovieCompanies[] @relation("CompanyType_movieCompanies")
+  @@map("company_type")
+}
+
+model CompleteCast {
+  id Int @id
+  movie_id Int?
+  subject_id Int
+  status_id Int
+  movie Title? @relation("Title_completeCasts", fields: [movie_id], references: [id])
+  subjectType CompCastType @relation("CompCastType_subjectCasts", fields: [subject_id], references: [id])
+  statusType CompCastType @relation("CompCastType_statusCasts", fields: [status_id], references: [id])
+  @@map("complete_cast")
+}
+
+model InfoType {
+  id Int @id
+  info String
+  movieInfos MovieInfo[] @relation("InfoType_movieInfos")
+  movieInfoIdxs MovieInfoIdx[] @relation("InfoType_movieInfoIdxs")
+  personInfos PersonInfo[] @relation("InfoType_personInfos")
+  @@map("info_type")
+}
+
+model Keyword {
+  id Int @id
+  keyword String
+  phonetic_code String?
+  movieKeywords MovieKeyword[] @relation("Keyword_movieKeywords")
+  @@map("keyword")
+}
+
+model KindType {
+  id Int @id
+  kind String?
+  titles Title[] @relation("KindType_titles")
+  akaTitles AkaTitle[] @relation("KindType_akaTitles")
+  @@map("kind_type")
+}
+
+model LinkType {
+  id Int @id
+  link String
+  movieLinks MovieLink[] @relation("LinkType_movieLinks")
+  @@map("link_type")
+}
+
+model MovieCompanies {
+  id Int @id
+  movie_id Int
+  company_id Int
+  company_type_id Int
+  note String?
+  movie Title @relation("Title_movieCompanies", fields: [movie_id], references: [id])
+  company CompanyName @relation("CompanyName_movieCompanies", fields: [company_id], references: [id])
+  companyType CompanyType @relation("CompanyType_movieCompanies", fields: [company_type_id], references: [id])
+  @@map("movie_companies")
+}
+
+model MovieInfoIdx {
+  id Int @id
+  movie_id Int
+  info_type_id Int
+  info String
+  note String?
+  movie Title @relation("Title_movieInfoIdxs", fields: [movie_id], references: [id])
+  infoType InfoType @relation("InfoType_movieInfoIdxs", fields: [info_type_id], references: [id])
+  @@map("movie_info_idx")
+}
+
+model MovieInfo {
+  id Int @id
+  movie_id Int
+  info_type_id Int
+  info String
+  note String?
+  movie Title @relation("Title_movieInfos", fields: [movie_id], references: [id])
+  infoType InfoType @relation("InfoType_movieInfos", fields: [info_type_id], references: [id])
+  @@map("movie_info")
+}
+
+model MovieKeyword {
+  id Int @id
+  movie_id Int
+  keyword_id Int
+  movie Title @relation("Title_movieKeywords", fields: [movie_id], references: [id])
+  keywordRef Keyword @relation("Keyword_movieKeywords", fields: [keyword_id], references: [id])
+  @@map("movie_keyword")
+}
+
+model MovieLink {
+  id Int @id
+  movie_id Int
+  linked_movie_id Int
+  link_type_id Int
+  movie Title @relation("Title_movieLinks", fields: [movie_id], references: [id])
+  linkedMovie Title @relation("Title_linkedFrom", fields: [linked_movie_id], references: [id])
+  linkType LinkType @relation("LinkType_movieLinks", fields: [link_type_id], references: [id])
+  @@map("movie_link")
+}
+
+model Name {
+  id Int @id
+  name String
+  imdb_index String?
+  imdb_id Int?
+  gender String?
+  name_pcode_cf String?
+  name_pcode_nf String?
+  surname_pcode String?
+  md5sum String?
+  akaNames AkaName[] @relation("Name_akaNames")
+  castInfos CastInfo[] @relation("Name_castInfos")
+  personInfos PersonInfo[] @relation("Name_personInfos")
+  @@map("name")
+}
+
+model PersonInfo {
+  id Int @id
+  person_id Int
+  info_type_id Int
+  info String
+  note String?
+  person Name @relation("Name_personInfos", fields: [person_id], references: [id])
+  infoType InfoType @relation("InfoType_personInfos", fields: [info_type_id], references: [id])
+  @@map("person_info")
+}
+
+model RoleType {
+  id Int @id
+  role String
+  castInfos CastInfo[] @relation("RoleType_castInfos")
+  @@map("role_type")
+}
+
+model Title {
+  id Int @id
+  title String
+  imdb_index String?
+  kind_id Int
+  production_year Int?
+  imdb_id Int?
+  phonetic_code String?
+  episode_of_id Int?
+  season_nr Int?
+  episode_nr Int?
+  series_years String?
+  md5sum String?
+  kindType KindType @relation("KindType_titles", fields: [kind_id], references: [id])
+  episodeOf Title? @relation("Title_episodes", fields: [episode_of_id], references: [id])
+  episodes Title[] @relation("Title_episodes")
+  akaTitles AkaTitle[] @relation("Title_akaTitles")
+  castInfos CastInfo[] @relation("Title_castInfos")
+  movieCompanies MovieCompanies[] @relation("Title_movieCompanies")
+  movieInfos MovieInfo[] @relation("Title_movieInfos")
+  movieInfoIdxs MovieInfoIdx[] @relation("Title_movieInfoIdxs")
+  movieKeywords MovieKeyword[] @relation("Title_movieKeywords")
+  movieLinks MovieLink[] @relation("Title_movieLinks")
+  linkedFrom MovieLink[] @relation("Title_linkedFrom")
+  completeCasts CompleteCast[] @relation("Title_completeCasts")
+  @@map("title")
+}
+

@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { CharName } from '../entities/char-name.entity';
+import { DatabaseModule } from '../database';
+import { CharName } from '../database/entities';
 import { CharNameController } from './char-name.controller';
 import { CharNameService } from './char-name.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CharName])],
+  imports: [DatabaseModule.forFeature([CharName])],
   controllers: [CharNameController],
   providers: [CharNameService],
   exports: [CharNameService],

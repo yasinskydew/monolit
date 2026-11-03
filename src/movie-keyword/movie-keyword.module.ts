@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { MovieKeyword } from '../entities/movie-keyword.entity';
+import { DatabaseModule } from '../database';
+import { MovieKeyword } from '../database/entities';
 import { MovieKeywordController } from './movie-keyword.controller';
 import { MovieKeywordService } from './movie-keyword.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([MovieKeyword])],
+  imports: [DatabaseModule.forFeature([MovieKeyword])],
   controllers: [MovieKeywordController],
   providers: [MovieKeywordService],
   exports: [MovieKeywordService],
