@@ -5,9 +5,23 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaPg } from '@prisma/adapter-pg';
-import { PrismaClient } from '../../../generated/prisma/client';
 import { Pool } from 'pg';
+import {
+  Prisma,
+  PrismaClient,
+} from '../../../generated/prisma/client';
+import {
+  QueryFileLogger,
+  isQueryFileLoggingEnabled,
+} from '../../logging';
 import { getPostgresUrl } from '../../postgres.config';
+
+type PrismaClientWithQueryLog = PrismaClient & {
+  $on(
+    eventType: 'query',
+    callback: (event: Prisma.QueryEvent) => void,
+  ): void;
+};
 
 @Injectable()
 export class PrismaService
@@ -19,8 +33,21 @@ export class PrismaService
   constructor(configService: ConfigService) {
     const pool = new Pool({ connectionString: getPostgresUrl(configService) });
     const adapter = new PrismaPg(pool);
-    super({ adapter });
+    const fileLogging = isQueryFileLoggingEnabled();
+
+    super({
+      adapter,
+      log: fileLogging ? [{ emit: 'event', level: 'query' }] : [],
+    });
+
     this.pool = pool;
+
+    if (fileLogging) {
+      const queryLog = QueryFileLogger.getInstance();
+      (this as PrismaClientWithQueryLog).$on('query', (event) => {
+        queryLog.write('prisma', event.query, event.params, event.duration);
+      });
+    }
   }
 
   async onModuleInit(): Promise<void> {

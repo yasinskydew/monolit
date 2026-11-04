@@ -2,6 +2,10 @@ import { DynamicModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DrizzleModule } from '@nestjs/drizzle';
 import { drizzle } from 'drizzle-orm/node-postgres';
+import {
+  QueryFileLogger,
+  isQueryFileLoggingEnabled,
+} from '../../logging';
 import { getPostgresConfig } from '../../postgres.config';
 import { schema } from './schema';
 
@@ -11,6 +15,8 @@ export function createDrizzleProvider(): DynamicModule {
     inject: [ConfigService],
     useFactory: (config: ConfigService) => {
       const pg = getPostgresConfig(config);
+      const fileLogging = isQueryFileLoggingEnabled();
+      const queryLog = QueryFileLogger.getInstance();
       return {
         drizzle,
         connection: {
@@ -21,6 +27,13 @@ export function createDrizzleProvider(): DynamicModule {
           database: pg.database,
         },
         schema,
+        logger: fileLogging
+          ? {
+              logQuery(query: string, params: unknown[]): void {
+                queryLog.write('drizzle', query, params);
+              },
+            }
+          : undefined,
       };
     },
   });

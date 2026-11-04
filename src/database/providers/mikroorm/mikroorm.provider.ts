@@ -2,6 +2,10 @@ import { DynamicModule } from '@nestjs/common';
 import { ReflectMetadataProvider } from '@mikro-orm/decorators/legacy';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
+import {
+  QueryFileLogger,
+  isQueryFileLoggingEnabled,
+} from '../../logging';
 import { mikroOrmEntities } from './entities';
 
 /**
@@ -9,7 +13,8 @@ import { mikroOrmEntities } from './entities';
  * Nest accepts Promise<DynamicModule> in imports — do not put it into exports.
  */
 export async function createMikroOrmProvider(): Promise<DynamicModule> {
-  const logging = process.env.DB_LOGGING === 'true';
+  const logging = isQueryFileLoggingEnabled();
+  const queryLog = QueryFileLogger.getInstance();
 
   return MikroOrmModule.forRoot({
     driver: PostgreSqlDriver,
@@ -23,5 +28,6 @@ export async function createMikroOrmProvider(): Promise<DynamicModule> {
     discovery: { warnWhenNoEntities: false },
     allowGlobalContext: true,
     debug: logging,
+    logger: (message: string) => queryLog.write('mikroorm', message),
   });
 }

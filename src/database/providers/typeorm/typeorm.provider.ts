@@ -1,6 +1,10 @@
 import { DynamicModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import {
+  TypeOrmQueryFileLogger,
+  isQueryFileLoggingEnabled,
+} from '../../logging';
 import { getPostgresConfig } from '../../postgres.config';
 import { entities } from './entities';
 
@@ -10,6 +14,7 @@ export function createTypeOrmProvider(): DynamicModule {
     inject: [ConfigService],
     useFactory: (config: ConfigService) => {
       const pg = getPostgresConfig(config);
+      const fileLogging = isQueryFileLoggingEnabled();
       return {
         type: 'postgres' as const,
         host: pg.host,
@@ -19,7 +24,8 @@ export function createTypeOrmProvider(): DynamicModule {
         database: pg.database,
         entities,
         synchronize: false,
-        logging: pg.logging,
+        logging: fileLogging,
+        logger: fileLogging ? new TypeOrmQueryFileLogger() : undefined,
       };
     },
   });
