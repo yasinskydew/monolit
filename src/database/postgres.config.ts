@@ -31,3 +31,12 @@ export function getPostgresUrl(config: ConfigService): string {
   const { host, port, username, password, database } = getPostgresConfig(config);
   return `postgresql://${encodeURIComponent(username)}:${encodeURIComponent(password)}@${host}:${port}/${database}`;
 }
+
+/** Read URL for Title projector / CDC rebuild (Postgres replica). Falls back to primary. */
+export function getProjectorPostgresUrl(config: ConfigService): string {
+  const fromEnv = config.get<string>('PROJECTOR_DATABASE_URL');
+  if (fromEnv) {
+    return fromEnv;
+  }
+  return getPostgresUrl(config);
+}

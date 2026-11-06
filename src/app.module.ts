@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { CastInfoModule } from './cast-info/cast-info.module';
 import { CharNameModule } from './char-name/char-name.module';
 import { CompanyNameModule } from './company-name/company-name.module';
+import { CqrsModule } from './cqrs/cqrs.module';
 import { DatabaseModule } from './database';
 import { KeywordModule } from './keyword/keyword.module';
 import { MovieCompaniesModule } from './movie-companies/movie-companies.module';
@@ -20,6 +21,7 @@ import { TitleModule } from './title/title.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule.forRoot(),
+    CqrsModule,
     TitleModule,
     NameModule,
     CastInfoModule,
