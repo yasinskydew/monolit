@@ -3,6 +3,7 @@ import { EntityManager } from '@mikro-orm/postgresql';
 import { NotFoundException } from '@nestjs/common';
 import {
   CrudRepository,
+  FindAllKeySetParams,
   FindAllParams,
   RelationsTree,
 } from '../../crud/crud.types';
@@ -25,6 +26,11 @@ export class MikroOrmCrudRepository<T extends { id: number }>
     return wrap(entity).toObject() as T;
   }
 
+  private resolveOrderField(orderBy: string): string {
+    const meta = this.em.getMetadata().get(this.entityName);
+    return meta.properties[orderBy] ? orderBy : 'id';
+  }
+
   async findAll(params: FindAllParams = {}): Promise<T[]> {
     const {
       skip = 0,
@@ -34,8 +40,7 @@ export class MikroOrmCrudRepository<T extends { id: number }>
       order = 'ASC',
     } = params;
 
-    const meta = this.em.getMetadata().get(this.entityName);
-    const field = meta.properties[orderBy] ? orderBy : 'id';
+    const field = this.resolveOrderField(orderBy);
 
     const rows = await this.em.find(
       this.entityName,
@@ -47,6 +52,32 @@ export class MikroOrmCrudRepository<T extends { id: number }>
         populate: this.populate(relations) as never,
       },
     );
+    return rows.map((row) => this.toPlain(row));
+  }
+
+  async findAllKeySet(params: FindAllKeySetParams = {}): Promise<T[]> {
+    const {
+      after,
+      take = 50,
+      relations,
+      orderBy = 'id',
+      order = 'ASC',
+    } = params;
+
+    const field = this.resolveOrderField(orderBy);
+    const where =
+      after == null
+        ? {}
+        : {
+            [field]:
+              order === 'DESC' ? { $lt: after } : { $gt: after },
+          };
+
+    const rows = await this.em.find(this.entityName, where as never, {
+      limit: take,
+      orderBy: { [field]: order.toLowerCase() },
+      populate: this.populate(relations) as never,
+    });
     return rows.map((row) => this.toPlain(row));
   }
 

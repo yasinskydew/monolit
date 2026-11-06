@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { parseRelations } from '../common/crud/parse-relations';
+import { KeySetPaginationDto } from '../common/dto/keyset-pagination.dto';
 import { PaginationDto } from '../common/dto/pagination.dto';
 import { CreateTitleDto } from './dto/create-title.dto';
 import { UpdateTitleDto } from './dto/update-title.dto';
@@ -25,6 +26,17 @@ export class TitleController {
   findAll(@Query() query: PaginationDto) {
     return this.service.findAll(
       query.skip ?? 0,
+      query.take ?? 50,
+      parseRelations(query.relations),
+      query.orderBy ?? 'id',
+      query.order ?? 'ASC',
+    );
+  }
+
+  @Get('keyset')
+  findAllKeySet(@Query() query: KeySetPaginationDto) {
+    return this.service.findAllKeySet(
+      query.after,
       query.take ?? 50,
       parseRelations(query.relations),
       query.orderBy ?? 'id',

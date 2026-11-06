@@ -1,6 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import {
   CrudRepository,
+  FindAllKeySetParams,
   FindAllParams,
   RelationsTree,
 } from '../../database/crud/crud.types';
@@ -17,6 +18,23 @@ export abstract class BaseCrudService<T extends { id: number }> {
   ): Promise<T[]> {
     const params: FindAllParams = { skip, take, relations, orderBy, order };
     return this.repository.findAll(params);
+  }
+
+  findAllKeySet(
+    after?: number,
+    take = 50,
+    relations?: RelationsTree,
+    orderBy = 'id',
+    order: 'ASC' | 'DESC' = 'ASC',
+  ): Promise<T[]> {
+    const params: FindAllKeySetParams = {
+      after,
+      take,
+      relations,
+      orderBy,
+      order,
+    };
+    return this.repository.findAllKeySet(params);
   }
 
   async findOne(id: number, relations?: RelationsTree): Promise<T> {

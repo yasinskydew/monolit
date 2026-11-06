@@ -10,6 +10,7 @@ export {
 export type {
   CrudRepository,
   EntityClass,
+  FindAllKeySetParams,
   FindAllParams,
   RelationsTree,
 } from './crud/crud.types';

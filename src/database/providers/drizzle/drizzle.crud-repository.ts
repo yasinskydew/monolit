@@ -1,8 +1,9 @@
 import { NotFoundException } from '@nestjs/common';
-import { and, asc, desc, eq, getTableColumns, max, SQL } from 'drizzle-orm';
+import { asc, desc, eq, getTableColumns, gt, lt, max } from 'drizzle-orm';
 import { PgTable } from 'drizzle-orm/pg-core';
 import {
   CrudRepository,
+  FindAllKeySetParams,
   FindAllParams,
   RelationsTree,
 } from '../../crud/crud.types';
@@ -54,6 +55,55 @@ export class DrizzleCrudRepository<T extends { id: number }>
       .orderBy(order === 'DESC' ? desc(col) : asc(col))
       .limit(take)
       .offset(skip)) as T[];
+  }
+
+  async findAllKeySet(params: FindAllKeySetParams = {}): Promise<T[]> {
+    const {
+      after,
+      take = 50,
+      relations,
+      orderBy = 'id',
+      order = 'ASC',
+    } = params;
+    const cols = this.cols();
+    const col = cols[orderBy] ?? cols.id;
+    const withClause = relationsToDrizzleWith(relations);
+    const cursor =
+      after == null
+        ? undefined
+        : order === 'DESC'
+          ? lt(col, after)
+          : gt(col, after);
+
+    if (withClause) {
+      return (await this.db.query[this.queryKey].findMany({
+        limit: take,
+        ...(cursor
+          ? {
+              where: (
+                fields: Record<string, any>,
+                ops: { gt: Function; lt: Function },
+              ) => {
+                const field = fields[orderBy] ?? fields.id;
+                return order === 'DESC'
+                  ? ops.lt(field, after)
+                  : ops.gt(field, after);
+              },
+            }
+          : {}),
+        with: withClause,
+        orderBy: (fields: Record<string, any>, ops: { asc: Function; desc: Function }) =>
+          order === 'DESC'
+            ? ops.desc(fields[orderBy] ?? fields.id)
+            : ops.asc(fields[orderBy] ?? fields.id),
+      })) as T[];
+    }
+
+    const query = this.db.select().from(this.table);
+    const filtered = cursor ? query.where(cursor) : query;
+    return (await filtered
+      .orderBy(order === 'DESC' ? desc(col) : asc(col))
+      .limit(take)) as T[];
   }
 
   async findById(id: number, relations?: RelationsTree): Promise<T | null> {

@@ -4,11 +4,14 @@ import {
   FindOptionsOrder,
   FindOptionsRelations,
   FindOptionsWhere,
+  LessThan,
+  MoreThan,
   ObjectLiteral,
   Repository,
 } from 'typeorm';
 import {
   CrudRepository,
+  FindAllKeySetParams,
   FindAllParams,
   RelationsTree,
 } from '../../crud/crud.types';
@@ -17,6 +20,13 @@ export class TypeOrmCrudRepository<T extends ObjectLiteral & { id: number }>
   implements CrudRepository<T>
 {
   constructor(private readonly repository: Repository<T>) {}
+
+  private resolveOrderField(orderBy: string): string {
+    const columns = new Set(
+      this.repository.metadata.columns.map((c) => c.propertyName),
+    );
+    return columns.has(orderBy) ? orderBy : 'id';
+  }
 
   async findAll(params: FindAllParams = {}): Promise<T[]> {
     const {
@@ -27,10 +37,7 @@ export class TypeOrmCrudRepository<T extends ObjectLiteral & { id: number }>
       order = 'ASC',
     } = params;
 
-    const columns = new Set(
-      this.repository.metadata.columns.map((c) => c.propertyName),
-    );
-    const field = columns.has(orderBy) ? orderBy : 'id';
+    const field = this.resolveOrderField(orderBy);
 
     return this.repository.find({
       skip,
@@ -40,6 +47,35 @@ export class TypeOrmCrudRepository<T extends ObjectLiteral & { id: number }>
         ? {
             relations: relations as FindOptionsRelations<T>,
             relationLoadStrategy: 'query',
+          }
+        : {}),
+    });
+  }
+
+  async findAllKeySet(params: FindAllKeySetParams = {}): Promise<T[]> {
+    const {
+      after,
+      take = 50,
+      relations,
+      orderBy = 'id',
+      order = 'ASC',
+    } = params;
+
+    const field = this.resolveOrderField(orderBy);
+    const where =
+      after == null
+        ? undefined
+        : ({
+            [field]: order === 'DESC' ? LessThan(after) : MoreThan(after),
+          } as FindOptionsWhere<T>);
+
+    return this.repository.find({
+      ...(where ? { where } : {}),
+      take,
+      order: { [field]: order } as FindOptionsOrder<T>,
+      ...(relations
+        ? {
+            relations: relations as FindOptionsRelations<T>,
           }
         : {}),
     });

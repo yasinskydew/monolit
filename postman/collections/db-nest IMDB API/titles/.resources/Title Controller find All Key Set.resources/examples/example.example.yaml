@@ -1,0 +1,38 @@
+$kind: http-example
+name: ""
+request:
+  url: "{{baseUrl}}/titles/keyset?take=50&orderBy=id&order=ASC"
+  method: GET
+  headers:
+    Accept: application/json
+  queryParams:
+    take: "50"
+    orderBy: id
+    order: ASC
+  body:
+    type: text
+    content: ""
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "id": 1,
+          "title": "string",
+          "imdb_index": "string",
+          "kind_id": 1,
+          "production_year": 1999,
+          "imdb_id": null,
+          "phonetic_code": "string",
+          "episode_of_id": null,
+          "season_nr": null,
+          "episode_nr": null,
+          "series_years": null,
+          "md5sum": "string"
+        }
+      ]

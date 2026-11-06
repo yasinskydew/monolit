@@ -27,6 +27,7 @@ export function createDrizzleProvider(): DynamicModule {
           database: pg.database,
         },
         schema,
+        // logger: false,
         logger: fileLogging
           ? {
               logQuery(query: string, params: unknown[]): void {

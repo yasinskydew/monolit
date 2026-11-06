@@ -12,8 +12,18 @@ export type FindAllParams = {
   order?: 'ASC' | 'DESC';
 };
 
+/** Keyset (seek) pagination: exclusive cursor on `orderBy` column. */
+export type FindAllKeySetParams = {
+  after?: number;
+  take?: number;
+  relations?: RelationsTree;
+  orderBy?: string;
+  order?: 'ASC' | 'DESC';
+};
+
 export interface CrudRepository<T extends { id: number }> {
   findAll(params?: FindAllParams): Promise<T[]>;
+  findAllKeySet(params?: FindAllKeySetParams): Promise<T[]>;
   findById(id: number, relations?: RelationsTree): Promise<T | null>;
   create(data: Partial<T> | object): Promise<T>;
   update(id: number, data: Partial<T> | object): Promise<T>;

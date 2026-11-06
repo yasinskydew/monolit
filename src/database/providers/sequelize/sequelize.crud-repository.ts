@@ -1,7 +1,8 @@
 import { NotFoundException } from '@nestjs/common';
-import { Model, ModelStatic, Order } from 'sequelize';
+import { Model, ModelStatic, Op, Order, WhereOptions } from 'sequelize';
 import {
   CrudRepository,
+  FindAllKeySetParams,
   FindAllParams,
   RelationsTree,
 } from '../../crud/crud.types';
@@ -22,6 +23,11 @@ export class SequelizeCrudRepository<T extends { id: number }>
 {
   constructor(private readonly model: ModelStatic<Model>) {}
 
+  private resolveOrderField(orderBy: string): string {
+    const attrs = Object.keys(this.model.getAttributes());
+    return attrs.includes(orderBy) ? orderBy : 'id';
+  }
+
   async findAll(params: FindAllParams = {}): Promise<T[]> {
     const {
       skip = 0,
@@ -31,11 +37,37 @@ export class SequelizeCrudRepository<T extends { id: number }>
       order = 'ASC',
     } = params;
 
-    const attrs = Object.keys(this.model.getAttributes());
-    const field = attrs.includes(orderBy) ? orderBy : 'id';
+    const field = this.resolveOrderField(orderBy);
 
     const rows = await this.model.findAll({
       offset: skip,
+      limit: take,
+      order: [[field, order]] as Order,
+      include: toInclude(relations),
+    });
+    return rows.map((row) => row.get({ plain: true }) as T);
+  }
+
+  async findAllKeySet(params: FindAllKeySetParams = {}): Promise<T[]> {
+    const {
+      after,
+      take = 50,
+      relations,
+      orderBy = 'id',
+      order = 'ASC',
+    } = params;
+
+    const field = this.resolveOrderField(orderBy);
+    const where: WhereOptions | undefined =
+      after == null
+        ? undefined
+        : {
+            [field]:
+              order === 'DESC' ? { [Op.lt]: after } : { [Op.gt]: after },
+          };
+
+    const rows = await this.model.findAll({
+      ...(where ? { where } : {}),
       limit: take,
       order: [[field, order]] as Order,
       include: toInclude(relations),

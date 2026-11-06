@@ -2,6 +2,7 @@ import { NotFoundException } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
 import {
   CrudRepository,
+  FindAllKeySetParams,
   FindAllParams,
   RelationsTree,
 } from '../../crud/crud.types';
@@ -46,6 +47,31 @@ export class PrismaCrudRepository<T extends { id: number }>
     const rows = await this.delegate.findMany({
       skip,
       take,
+      orderBy: { [orderBy]: order.toLowerCase() },
+      include: relationsToInclude(relations),
+    });
+    return rows as T[];
+  }
+
+  async findAllKeySet(params: FindAllKeySetParams = {}): Promise<T[]> {
+    const {
+      after,
+      take = 50,
+      relations,
+      orderBy = 'id',
+      order = 'ASC',
+    } = params;
+
+    const rows = await this.delegate.findMany({
+      take,
+      ...(after == null
+        ? {}
+        : {
+            where: {
+              [orderBy]:
+                order === 'DESC' ? { lt: after } : { gt: after },
+            },
+          }),
       orderBy: { [orderBy]: order.toLowerCase() },
       include: relationsToInclude(relations),
     });

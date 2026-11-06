@@ -1,0 +1,30 @@
+$kind: http-request
+name: Title Controller find All Key Set
+description: Keyset (seek) pagination — exclusive cursor on orderBy column
+url: "{{baseUrl}}/titles/keyset?after=&take=50&relations=&orderBy=id&order=ASC"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  - key: after
+    value: ""
+    disabled: false
+    description: Exclusive cursor on orderBy (last value from previous page)
+  - key: take
+    value: "50"
+    disabled: false
+  - key: relations
+    value: ""
+    disabled: false
+    description: Comma-separated relation paths, e.g. kindType,castInfos.person
+  - key: orderBy
+    value: id
+    disabled: false
+    description: Column used for keyset cursor and ordering
+  - key: order
+    value: ASC
+    disabled: false
+    description: ASC | DESC
+settings: {}
+examples: ./.resources/Title Controller find All Key Set.resources/examples
+order: 1500
