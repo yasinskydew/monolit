@@ -2,11 +2,7 @@ export { DatabaseModule } from './database.module';
 export { createPostgresProvider } from './database.factory';
 export { DB_PROVIDERS, resolveDbProvider } from './database.types';
 export type { DbProvider } from './database.types';
-export {
-  getPostgresConfig,
-  getPostgresUrl,
-  getProjectorPostgresUrl,
-} from './postgres.config';
+export { getPostgresConfig, getPostgresUrl } from './postgres.config';
 export {
   InjectCrudRepository,
   getCrudRepositoryToken,
